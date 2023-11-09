@@ -1,13 +1,14 @@
 import { Input } from "./ui/input";
 
 export interface ISearchBarProps {
-    onSearch: (query: string) => void;
+    inputValue: string;
+    setInputValue: (value: string) => void;
 }
 
-export function SearchBar({ onSearch }: ISearchBarProps) {
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onSearch(event.target.value);
+export function SearchBar({ inputValue, setInputValue }: ISearchBarProps) {
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
     };
 
-    return <Input type="search" placeholder="Search" onChange={handleSearch} className="my-4" />;
+    return <Input type="search" placeholder="Search" onChange={handleSearch} value={inputValue} className="my-4" />;
 }

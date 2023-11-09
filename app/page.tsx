@@ -1,9 +1,5 @@
-"use client";
-
 import { Alchemy, Network, Nft } from "alchemy-sdk";
-import { useState, useEffect } from "react";
-import CardsGrid from "@/components/cards-grid";
-import { SearchBar } from "@/components/search-bar";
+import HomePage from "@/components/home-page";
 
 async function getNFTs(): Promise<Nft[]> {
     const config = {
@@ -16,28 +12,8 @@ async function getNFTs(): Promise<Nft[]> {
     return response.nfts;
 }
 
-export default function Home() {
-    const [searchTerm, setSearchTerm] = useState<string>("");
-    const [isLoading, setLoading] = useState(true);
-    const [nfts, setNfts] = useState<Nft[]>([]);
+export default async function Home() {
+    const nfts = await getNFTs();
 
-    useEffect(() => {
-        const fetchNfts = async () => {
-            setLoading(true);
-            const nfts = await getNFTs();
-            setNfts(nfts);
-            setLoading(false);
-        };
-        fetchNfts();
-    }, []);
-
-    const filteredNfts = nfts.filter((nft) => nft.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    // console.log("🚀 ~ file: page.tsx:35 ~ Home ~ filteredNfts:", filteredNfts);
-
-    return (
-        <main>
-            <SearchBar onSearch={setSearchTerm} />
-            <CardsGrid filteredNfts={filteredNfts} isLoading={isLoading} />
-        </main>
-    );
+    return <HomePage nfts={nfts} />;
 }
