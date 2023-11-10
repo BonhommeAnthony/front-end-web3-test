@@ -58,9 +58,8 @@
     }
 }
 
-main,
-nav {
-    @apply max-w-6xl mx-auto my-12 px-2;
+main {
+    @apply mx-auto my-12 px-2  max-w-7xl;
 }
 
 p {

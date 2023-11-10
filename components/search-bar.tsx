@@ -10,5 +10,13 @@ export function SearchBar({ inputValue, setInputValue }: ISearchBarProps) {
         setInputValue(e.target.value);
     };
 
-    return <Input type="search" placeholder="Search" onChange={handleSearch} value={inputValue} className="my-4" />;
+    return (
+        <Input
+            type="search"
+            placeholder="Search"
+            onChange={handleSearch}
+            value={inputValue}
+            className="my-4 text-base "
+        />
+    );
 }

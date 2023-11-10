@@ -2,9 +2,9 @@
 
 import { SearchBar } from "./search-bar";
 import { Nft } from "alchemy-sdk";
-import NftCard from "./nft-card";
 import { useCallback, useEffect, useState } from "react";
 import { NftsGrid } from "./nfts-grid";
+import { CollectionInfo } from "./collection-info";
 
 export interface IHomePageProps {
     nfts: Nft[];
@@ -34,6 +34,7 @@ export default function HomePage({ nfts }: IHomePageProps) {
 
     return (
         <main>
+            <CollectionInfo collectionInfo={nfts[0].contract.openSea} />
             <SearchBar inputValue={inputValue} setInputValue={setInputValue} />
             <NftsGrid nfts={inputValue.length > 0 ? filteredList : initialList} />
         </main>

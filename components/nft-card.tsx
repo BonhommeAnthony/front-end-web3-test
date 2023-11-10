@@ -13,7 +13,7 @@ export default function NftCard({ nft }: { nft: Nft }) {
             <CardHeader className="py-0 px-2">
                 <div className="overflow-hidden rounded-lg h-52 relative ">
                     <Image
-                        src={nft.rawMetadata?.image as string}
+                        src={nft.rawMetadata?.image || ""}
                         alt={nft.title}
                         fill
                         sizes="100vh"
